@@ -6,7 +6,7 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 
 const Home = () => {
     const searchParams = useSearchParams();
@@ -227,4 +227,10 @@ const Home = () => {
     );
 };
 
-export default Home;
+const HomePage = () => (
+    <Suspense fallback={<div>Loading...</div>}>
+        <Home />
+    </Suspense>
+);
+
+export default HomePage;
